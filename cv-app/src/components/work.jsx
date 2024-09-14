@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/work.css"
 
 export default function Work(){
   const [jobs, editJobs]=useState([{id: crypto.randomUUID(), company:"", role:"", responsibility:"", date:"", submitted:false}]);
@@ -35,7 +36,7 @@ export default function Work(){
     
     if (submitted === false) {
       return(
-        <>
+        <div className="work-form">
         <br/>
         <label>
           Company Name:
@@ -73,19 +74,21 @@ export default function Work(){
           onChange={(event) => setDate(event.target.value)}
           />
         </label>
-        <button onClick={Submit}>Submit</button>
-        </>
+        <button className="submit" onClick={Submit}>Submit</button>
+        </div>
     )} else if (submitted === true){
       return(
-        <>
+        <div className="work-submit">
         <br/>
         <h1>Company Name: {company}</h1>
         <h1>Position Title: {role}</h1>
         <h1>Responsibilities: {responsibility}</h1>
         <h1>Dates Attended: {date}</h1>
-        <button onClick={Submit}>Edit</button>
-        <button onClick={Delete}>Delete</button>
-        </>
+        <div>
+          <button className="submit" onClick={Submit}>Edit</button>
+          <button className="submit" onClick={Delete}>Delete</button>
+        </div>
+        </div>
     )}
   }
 
@@ -94,10 +97,10 @@ export default function Work(){
   }
 
   return(
-    <>
+    <div className="work">
     <h1>Work</h1>
     {jobs.map(workplace => <Job key={workplace.id} id={workplace.id} companyprop={workplace.company} roleprop={workplace.role} responseprop={workplace.responsibility} dateprop={workplace.date} submitted={workplace.submitted}/>)}
-    <button onClick={Add}>+</button>
-    </>
+    <button className="add" onClick={Add}>+</button>
+    </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/personal.css"
 
 export default function Personal(){
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ export default function Personal(){
     }
     
       if (!submit)return (
-      <>
+      <div className="personal-form">
      <label >
       Name:
       {" "}
@@ -42,16 +43,16 @@ export default function Personal(){
           onChange={(event) => setPhone(event.target.value)}
         />
      </label>
-     <button onClick={Submit}>Submit</button>
-     </>
+     <button className="submit" onClick={Submit}>Submit</button>
+     </div>
      )
     if (submit) return(
-      <>
+      <div className="personal-submit">
       <h1>Name: {name}</h1>
       <h1>Email: {email}</h1>
       <h1>Phone Number: {phone}</h1>
-      <button onClick={Edit}>Edit</button>
-      </>
+      <button className="submit" onClick={Edit}>Edit</button>
+      </div>
     )
     
 }

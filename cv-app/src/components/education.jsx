@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/education.css"
 
 export default function Education(){
   const [schools, editSchools]=useState([{id: crypto.randomUUID(), school:"", study: "", date:"", submitted:false}]);
@@ -32,7 +33,7 @@ export default function Education(){
       editSchools([...schools.filter(place => place.id !== id)])
     }
     if (submitted ===false) {return(
-      <>
+      <div className="education-form">
       <br/>
       <label>
         School:
@@ -61,18 +62,20 @@ export default function Education(){
       onChange={(event) => setDate(event.target.value)}
     />
       </label>
-      <button onClick={Submit}>Submit</button>
-      </>
+      <button className="submit" onClick={Submit}>Submit</button>
+      </div>
     )} else if (submitted === true){
       return(
-        <>
+        <div className="education-submit">
         <br/>
         <h1>School: {school}</h1>
         <h1>Field of Study: {study}</h1>
         <h1>Dates Attended: {date}</h1>
-        <button onClick={Submit}>Edit</button>
-        <button onClick={Delete}>Delete</button>
-        </>
+        <div>
+          <button className="submit" onClick={Submit}>Edit</button>
+          <button className="submit" onClick={Delete}>Delete</button>
+        </div>
+        </div>
       )
     }
   }
@@ -82,10 +85,10 @@ export default function Education(){
   }
 
   return(
-    <>
+    <div className="education">
     <h1>Eduction</h1>
     {schools.map(place => <School key={place.id} id={place.id} schoolprop={place.school} studyprop={place.study} dateprop={place.date} submitted={place.submitted}/>)}
-    <button onClick={Add}>+</button>
-    </>
+    <button className="add" onClick={Add}>+</button>
+    </div>
   )
 }
